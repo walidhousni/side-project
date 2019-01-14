@@ -1,0 +1,33 @@
+{
+	"presets": [
+		"@babel/preset-react",
+		"next/babel"
+	],
+	"plugins": [
+		[
+			"styled-components",
+			{
+				"ssr": true,
+				"displayName": true,
+				"preprocess": false
+			}
+		],
+		[
+			"inline-react-svg",
+			{
+				"svgo": {
+					"plugins": [
+						{
+							"removeAttrs": {
+								"attrs": "(data-name)"
+							}
+						},
+						{
+							"cleanupIDs": true
+						}
+					]
+				}
+			}
+		]
+	]
+}

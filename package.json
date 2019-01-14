@@ -1,0 +1,84 @@
+{
+	"name": "maf_official_front",
+	"version": "1.0.0",
+	"description": "Maltem Africa Official Website",
+	"main": "index.js",
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start",
+		"docker:build": "docker build -t mkanzit/maf_front .",
+		"docker:clean": "docker rm -f mkanzit/maf_front || true",
+		"docker:run": "docker run -p 3000:3000 -d --name mkanzit/maf_front && npm run docker:logs",
+		"docker:stop": "docker stop mkanzit/maf_front",
+		"docker:start": "docker start mkanzit/maf_front && npm run docker:logs",
+		"docker:logs": "docker logs -f mkanzit/maf_front",
+		"deploy": "npm run docker:build && npm run docker:clean && npm run docker:run"
+	},
+	"author": "Maltem Africa <obronzini@maltem.com>",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://bitbucket.org/maltem-africa/map-front-app/src/master"
+	},
+	"dependencies": {
+		"@material-ui/core": "^3.8.3",
+		"@material-ui/icons": "^3.0.2",
+		"axios": "^0.18.0",
+		"classnames": "^2.2.6",
+		"formik": "^1.4.2",
+		"next": "^7.0.2",
+		"next-redux-saga": "^3.0.0",
+		"next-redux-wrapper": "^2.1.0",
+		"react": "^16.6.3",
+		"react-css-grid": "^2.0.0-0",
+		"react-dom": "^16.6.3",
+		"react-jvectormap": "0.0.4",
+		"react-no-ssr": "^1.1.0",
+		"react-particles-js": "^2.4.2",
+		"react-redux": "^6.0.0",
+		"react-slick": "^0.23.2",
+		"redux": "^4.0.1",
+		"redux-saga": "^0.16.2",
+		"slick-carousel": "^1.8.1",
+		"styled-components": "^4.1.3",
+		"yup": "^0.26.7"
+	},
+	"devDependencies": {
+		"@babel/preset-flow": "^7.0.0",
+		"@babel/preset-react": "^7.0.0",
+		"@commitlint/cli": "^7.2.1",
+		"@commitlint/config-conventional": "^7.1.2",
+		"@svgr/cli": "^4.1.0",
+		"babel-eslint": "^10.0.1",
+		"babel-plugin-inline-react-svg": "^1.0.1",
+		"babel-plugin-styled-components": "^1.10.0",
+		"babel-preset-flow": "^6.23.0",
+		"eslint": "^5.10.0",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-config-prettier": "^3.3.0",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-jsx-a11y": "^6.1.2",
+		"eslint-plugin-prettier": "^3.0.0",
+		"eslint-plugin-react": "^7.11.1",
+		"husky": "^1.2.1",
+		"lint-staged": "^8.1.0",
+		"prettier": "^1.15.3",
+		"pretty-quick": "^1.8.0",
+		"redux-devtools": "^3.4.2",
+		"svg-to-react-cli": "^1.5.0"
+	},
+	"lint-staged": {
+		"*.{js,jsx}": [
+			"prettier --write",
+			"eslint --fix",
+			"git add"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+			"pre-commit": "pretty-quick --staged && lint-staged"
+		}
+	}
+}
